@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+        <title>Data Stream</title>
+    
+        <!-- BoxIcons v2.1.2 -->
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    
+        <!-- Roboto Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+        <!-- CSS File -->
+        <link rel="stylesheet" href="../static/css/datastream.css">
+      
+    </head>
+    
+    <body>
+        
+
+        <h1>Device Data Stream</h1>
+
+            <table id="DataStream">
+                <tr>
+                    <th>Device ID</th>
+                    <th>Battery Level</th>
+                    <th>First Sensor Temperature</th>
+                    <th>Route From</th>
+                    <th>Route To</th>
+                    <th>Timestamp</th>
+                </tr>
+            </table>
+
+                
+            <div class="sidebar">
+        
+                <div class="toggle">
+                    <i class="bx bx-chevron-right"></i>
+                </div>
+        
+                <div class="logo">
+                    <img src="../static/Images/exf_logo.jpg" alt="...">
+                    <h3>"Seamless Flow, Endless Growth."</h3>
+                </div>
+        
+                <nav>
+                    <div class="nav-title">
+                        MENU
+                    </div>
+                    <ul>
+                        <li class="nav-item active" data-page="dashboard">
+                            <i class="bx bxs-dashboard"></i>
+                            <span>Dashboard</span>
+                        </li>
+                        <li class="nav-item" data-page="my_account">
+                            <i class="bx bxs-user"></i>
+                            <span>My Account</span>
+                        </li>
+                        <li class="nav-item" data-page="myshipment">
+                            <i class="bx bxs-wallet"></i>
+                            <span>My Shipment</span>
+                        </li>
+                        <li class="nav-item" data-page="createshipment">
+                            <i class="bx bxs-truck"></i>
+                            <span>New Shipment</span>
+                        </li>
+                        <li class="nav-item" data-page="datastream">
+                            <i class="bx bxs-save"></i>
+                            <span>Device Data</span>
+                        </li>
+                        <li class="nav-item" data-page="logout" onclick="clearAccessToken()">
+                            <i class="bx bx-log-out"></i>
+                            <span>Logout</span>
+                        </li>  
+                    </ul>
+        
+                    
+        
+                </nav>
+                
+                
+
+        
+            </div>
+        
+            
+            
+        
+            <!-- JS File -->
+        
+            <script>
+                const sidebar = document.querySelector('.sidebar');
+                const navItems = document.querySelectorAll('nav .nav-item');
+                const toggle = document.querySelector('.sidebar .toggle');
+        
+                toggle.addEventListener('click', () => {
+                    if (sidebar.className === 'sidebar')
+                        sidebar.classList.add('open');
+                    else
+                        sidebar.classList.remove('open');
+                });
+        
+                navItems.forEach(navItem => {
+                    navItem.addEventListener('click', () => {
+                        navItems.forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        navItem.classList.add('active');
+        
+                        const pageURL = navItem.getAttribute('data-page');
+                        if (pageURL) {
+                            window.location.href = pageURL;
+                        }
+                    });
+                });
+           
+                // Sample data for datastreams
+            var datastreams = [
+                { id: "4587434500", Battery: "6.0", SensorTemp: "12&deg;C" , RouteFrom:"Mumbai,India", RouteTo:"Louisville,USA", Time:"2023-02-0610:19AM"},
+                { id: "4587434500", Battery: "7.5", SensorTemp: "32&deg;C", RouteFrom:"Mumbai,India", RouteTo:"Louisville,USA", Time:"2023-02-0610:19AM"},
+                { id: "4587434500", Battery: "8.0", SensorTemp: "22.4&deg;C", RouteFrom:"Mumbai,India", RouteTo:"Louisville,USA", Time:"2023-02-0610:19AM"}
+            ];
+
+            // Function to populate the table with datastream data
+            function populateTable() {
+                var table = document.getElementById("DataStream");
+            
+                for (var i = 0; i < datastreams.length; i++) {
+                    var datastream = datastreams[i];
+
+                    var row = table.insertRow();
+                    var idCell = row.insertCell(0);
+                    var BatteryCell = row.insertCell(1);
+                    var SensorTempCell = row.insertCell(2);
+                    var RouteFromCell = row.insertCell(3);
+                    var RouteToCell = row.insertCell(4);
+                    var TimeCell = row.insertCell(5);
+
+                    idCell.innerHTML = datastream.id;
+                    BatteryCell.innerHTML = datastream.Battery;
+                    SensorTempCell.innerHTML = datastream.SensorTemp;
+                    RouteFromCell.innerHTML = datastream.RouteFrom;
+                    RouteToCell.innerHTML = datastream.RouteTo;
+                    TimeCell.innerHTML = datastream.Time;
+                }
+            }
+
+            // Call the function to populate the table on page load
+            populateTable();
+
+              //logout....
+
+              function clearAccessToken() {
+                console.log('Clearing access token');
+
+    // Make a request to your logout endpoint
+    fetch('/logout')
+        .then(response => {
+            if (response.ok) {
+                // Redirect to the home page after successful logout
+                window.location.href = '/';
+            } else {
+                console.error('Failed to logout');
+            }
+        })
+        .catch(error => console.error('Error during logout:', error));
+}
+
+        </script>
+    
+    </body>
+    </html>

@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+        
+.error-message {
+    color: red;
+}
+
+    :root {
+--primary-color: #5b8899;;
+--secondary-color: #007ea7;
+--black: #000000;
+--white: #ffffff;
+--gray: #efefef;
+--gray-2: #757575;
+
+--facebook-color: #4267B2;
+--google-color: #DB4437;
+--twitter-color: #1DA1F2;
+--insta-color: #E1306C;
+}
+
+
+* {
+font-family: 'Poppins', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html,
+body {
+background-image: url("../Images/signin.jpg");
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center center;
+height: 100vh;
+overflow: hidden;
+}
+.container {
+position: relative;
+min-height: 100vh;
+overflow: hidden;
+}
+
+.row {
+display: flex;
+flex-wrap: wrap;
+height: 100vh;
+}
+
+.col {
+width: 50%;
+
+}
+
+.align-items-center {
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+
+.form-wrapper {
+width: 100%;
+max-width: 28rem;
+margin-left: 25%; 
+}
+
+.form {
+padding: 1rem;
+background-color: var(--white);
+border-radius: 1.5rem;
+width: 100%;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+transform: scale(0);
+transition: .5s ease-in-out;
+transition-delay: 1s;
+}
+
+.input-group {
+position: relative;
+width: 100%;
+margin: 1rem 0;
+}
+
+.input-group i {
+position: absolute;
+top: 50%;
+left: 1rem;
+transform: translateY(-50%);
+font-size: 1.4rem;
+color: var(--gray-2);
+}
+
+.input-group input {
+width: 100%;
+padding: 1rem 3rem;
+font-size: 1rem;
+background-color: var(--gray);
+border-radius: .5rem;
+border: 0.125rem solid var(--white);
+outline: none;
+}
+
+.input-group input:focus {
+border: 0.125rem solid var(--primary-color);
+}
+
+
+@keyframes flicker {
+0% {
+    opacity: 1;
+}
+100% {
+    opacity: 0.5;
+}
+}
+
+
+
+.form p {
+margin: 1rem 0;
+font-size: .7rem;
+}
+
+.flex-col {
+flex-direction: column;
+}
+
+
+.pointer {
+cursor: pointer;
+}
+
+.container.sign-in .form.sign-in,
+.container.sign-in .social-list.sign-in,
+.container.sign-in .social-list.sign-in>div,
+.container.sign-up .form.sign-up,
+.container.sign-up .social-list.sign-up,
+.container.sign-up .social-list.sign-up>div {
+transform: scale(1);
+}
+
+.content-row {
+position: absolute;
+top: 0;
+left: 0;
+pointer-events: none;
+z-index: 6;
+width: 100%;
+}
+
+.text {
+margin: 24rem;
+color: var(--white);
+}
+
+.text h2 .text h1{
+font-size: 25px;
+font-weight: 800;
+margin: 2rem 0;
+transition: 1s ease-in-out;
+}
+
+.text p {
+font-weight: 600;
+transition: 1s ease-in-out;
+transition-delay: .2s;
+}
+
+.img img {
+width: 30vw;
+border-radius: 80%;
+transition: 1s ease-in-out;
+transition-delay: .4s;
+} 
+
+.text.sign-in h2,
+.text.sign-in p,
+.img.sign-in img {
+position: absolute;
+top: 50%;
+right: 75%;
+transform: translate(-50%, -50%);
+/* transform: translateX(-250%); */
+}
+.text.sign-up h2 {
+font-size: 24px; /* Adjust the font size as needed */
+color: #eeeaea; /* Set the text color */
+margin-bottom: 10px; /* Add some bottom margin for spacing */
+font-weight: bold; /* Make the text bold */
+text-align: center; /* Center the text */
+}
+.text.sign-up h1,
+.text.sign-up p,
+.img.sign-up img {
+transform: translateX(250%);
+}
+
+.container.sign-in .text.sign-in h2,
+.container.sign-in .text.sign-in p,
+.container.sign-in .img.sign-in img,
+.container.sign-up .text.sign-up h1,
+.container.sign-up .text.sign-up p,
+.container.sign-up .img.sign-up img {
+transform: translateX(0);
+}
+
+/* BACKGROUND */
+
+.container::before {
+content: "";
+position: absolute;
+top: 0;
+right: 0;
+height: 100vh;
+width: 300vw;
+transform: translate(35%, 0);
+background-image: url("../Images/signin.jpg");
+background-repeat: no-repeat;
+background-size: contain;
+background-image: linear-gradient(-45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+transition: 1s ease-in-out;
+z-index: 6;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+border-bottom-right-radius: max(50vw, 50vh);
+border-top-left-radius: max(50vw, 50vh);
+}
+
+.container.sign-in::before {
+transform: translate(0, 0);
+right: 50%;
+}
+
+.container.sign-up::before {
+transform: translate(100%, 0);
+right: 50%;
+}
+
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 425px) {
+
+.container::before,
+.container.sign-in::before,
+.container.sign-up::before {
+    height: 100vh;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    z-index: 0;
+    transform: none;
+    right: 0;
+}
+
+/* .container.sign-in .col.sign-up {
+    transform: translateY(100%);
+} */
+
+.container.sign-in .col.sign-in,
+.container.sign-up .col.sign-up {
+    transform: translateY(0);
+}
+
+.content-row {
+    align-items: flex-start !important;
+}
+
+.content-row .col {
+    transform: translateY(0);
+    background-color: unset;
+}
+
+.col {
+    width: 100%;
+    position: absolute;
+    padding: 2rem;
+    background-color: var(--white);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    transform: translateY(100%);
+    transition: 1s ease-in-out;
+}
+
+.row {
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.text {
+    margin: 0;
+}
+
+.text p {
+    display: none;
+}
+
+}
+.captcha-container {
+width: 150px;
+height: 150px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: auto;
+
+}
+
+#captcha {
+width: 100%;
+height: 50px;
+
+}
+
+#textBox {
+width: 100%;
+height:30px;
+}
+
+#submitButton{
+display: block;
+margin: 10px auto 0;
+background-color: #91c5ca; /* You can adjust the background color as needed */
+border: 2px solid #e1e9e2;
+padding: 0.5em 1em;
+border-radius:10px;
+cursor: pointer;
+
+}
+#submitButton:hover {
+    background-color: #b2cfb3; /* Darker green color on hover */
+}
+.buttons-container {
+    position: relative;
+}
+
+#refreshButton {
+    position: relative;
+    display: block;
+    margin-right: 10px;
+    left: 356px;
+    bottom: 85px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(143, 179, 176);
+    transition: transform 0.3s ease-in-out; /* Adding a smooth transition for the lifting effect */
+}
+
+#refreshButton:hover {
+    background-color: rgb(123, 159, 156); /* Change the background color on hover */
+    transform: translateY(-5px); /* Lift the button on hover */
+    transform: rotate(180deg); 
+}
+.signin-button {
+background-color: #95b1b3;
+width: 100%;
+color: rgb(27, 26, 26);
+padding: .6rem 0;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 1.2rem;
+margin: 4px 2px;
+cursor: pointer;
+border: none;
+border-radius: .5rem;
+outline: none;
+
+}
+.signin-button.enable-flicker {
+    animation: flicker 1s infinite alternate;
+    
+}
+.signin-button.enable-flicker::before {
+    content: "Sign In"; /* Add the text content */
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    color: white;
+    opacity: 1; /* Set a higher opacity for the text */
+}
+
+@keyframes flicker {
+    from, to {
+        opacity: 1;
+    }
+    25%, 50%, 75% {
+        opacity: 0.5;
+    }
+}
+
+.input-group {
+    position: relative;
+}
+
+.password-container {
+    position: absolute;
+    right: 10px; /* Adjust this value to position the icon as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.eye-icon {
+    cursor: pointer;
+}
+
+@keyframes flicker {
+0% {
+    opacity: 1;
+}
+100% {
+    opacity: 0.5;
+}
+}
