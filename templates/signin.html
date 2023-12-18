@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>signin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="../static/css/signin.css">
+ 
+<body>
+    
+   
+    <div id="container" class="container">
+        <!-- FORM SECTION -->
+        <div class="row">
+            <!-- SIGN UP -->
+            <div class="col align-items-center flex-col sign-up">
+                <div class="form-wrapper align-items-center">
+                    <div class="form sign-up">
+                 
+                    <p>
+                        <span>
+                            Already have an account?
+                        </span>
+                        
+
+                        <p onclick="toggle()" class="pointer sign">
+                            Sign in here
+                    </p>
+                            
+                        </p>
+                    </div>
+                </div>
+        
+            </div>
+            <!-- END SIGN UP -->
+            <!-- SIGN IN -->
+            <div class="col align-items-center flex-col sign-in">
+                <div class="form-wrapper align-items-center">
+                    <div class="form sign-in">
+                        <!-- Add an iframe for form submission -->
+                        <iframe id="hidden-iframe" name="hidden-iframe" style="display:none;"></iframe>
+                        <form action="/signin" method="post">
+                            <div id="message-container">
+                                <!-- Placeholder for the message -->
+                                {% if error_message and not error_message_displayed %}
+                                    <div id="message-container">
+                                        <p class="{{ error_message.class }}">{{ error_message.message }}</p>
+                                    </div>
+                                    {% set error_message_displayed = true %}
+                                {% endif %}
+                            </div>
+                            
+                    
+                        <div class="center" style="margin-bottom: 20px;">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" placeholder="email" class="email" name="username" required>
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Password" id="password" name="password" minlength="8" required>
+                                <div class="password-container">
+                                    <span class="eye-icon" id="togglePassword" onclick="togglePasswordVisibility()">&#128065;</span>
+                                </div>
+                                <div id="password-error" class="error-message"></div>
+                            </div>
+
+                            <button id="sign-inbutton" type="submit"    class="signin-button" disabled> Sign in </button>
+                          
+                            <div id="captchaBackground">
+
+                                    <div class="captcha-container">
+                                        <canvas id="captcha" ></canvas>
+                                        <input id="textBox" type="text" name="text">
+                                        <button id="submitButton" type="button">Submit</button>
+
+                                    </div>
+                              
+                                    <div class="buttons-container">
+                                        <button id="refreshButton" type="submit">↻</button>
+
+                                    </div>
+                                    <span id="output"></span>
+                            </div>    
+
+                        </div> 
+                        
+                        <p>
+                            <a href="/newpassword">Forgot Password?,   </a> 
+                            <span>
+                                Don't have an account?
+                            </span>
+                            <b onclick="toggle()" class="pointer sign">
+                                <a href="/signup">Sign up here</a>
+                            </b>
+                        </p>
+                    </form> 
+                    </div>
+                </div>      
+                <div class="form-wrapper">
+        
+                </div>
+            </div>
+
+            <!-- END SIGN IN -->
+        </div>
+        <!-- END FORM SECTION -->
+        <!-- CONTENT SECTION -->
+        <div class="row content-row">
+            <!-- SIGN IN CONTENT -->
+            
+                <div class="text sign-in">
+                    <h2 >
+                        "Nice to have you here!"
+                    </h2>
+    
+                </div>
+            
+        </div>
+        <!-- END CONTENT SECTION -->
+    </div>       
+
+<script src="../static/js/signin.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

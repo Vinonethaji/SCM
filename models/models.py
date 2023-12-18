@@ -12,16 +12,16 @@ class Shipment(BaseModel):
     """
     A Pydantic schema for a Shipment
     """
-    Shipment_Invoice_Number: str
-    Container_Number: int
-    Description: str
-    Route_Details: str
-    Goods_Type: str
+    ShipmentNumber: str
+    ContainerNumber: int
+    ShipmentDescription: str
+    RouteDetails: str
+    GoodsType: str
     Device: str
-    Expected_Delivery_Date: str
-    Po_Number: int
-    Delivery_number: int
+    PickupDate: str
+    PONumber: int
+    DeliveryNumber: int
     NDCNumber: int
-    Batch_Id: int
-    Serialnumberofgoods: int
-    mailid: str
+    BatchId: int
+    SerialNumber: int
+    email: str

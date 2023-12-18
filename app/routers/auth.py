@@ -4,18 +4,18 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi import APIRouter, Request, Depends, HTTPException, Form, Cookie, status
 from datetime import datetime, timedelta
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import  RedirectResponse
 import os
 from dotenv import load_dotenv
-from config.config import signup_collection
-import secrets
+from config.config import user_collection
+
 
 app = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="templates")
 
 
 # Load environment variables from a .env file
-load_dotenv()
+load_dotenv(dotenv_path=".env")
 
 # Create an instance of CryptContext for password hashing and verification
 pwd_cxt = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -86,7 +86,7 @@ async def get_current_user_from_cookie(request: Request):
     try:
         payload = decode_token(token)
         if payload and "sub" in payload and "email" in payload:
-            user_data = signup_collection.find_one({"email": payload["email"]})
+            user_data = user_collection.find_one({"email": payload["email"]})
             if user_data and "username" in user_data:
                 return {"username": user_data["username"], "email": payload["email"], "role": user_data.get("role")}
     except JWTError:
@@ -95,9 +95,9 @@ async def get_current_user_from_cookie(request: Request):
     return None
 
 
-# Function to clear the access token cookie
+###### ----------function to clear access token ----------######
+
 def clear_access_token_cookie(response: RedirectResponse):
     print("Clearing access token cookie") 
     # Set the access token cookie to an expired value
-    response.delete_cookie(key="access_token")
-
+    response.delete_cookie(key="access_token", httponly=True)

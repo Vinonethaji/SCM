@@ -1,0 +1,189 @@
+
+<html lang="en">
+    <head>
+    
+        <title>createshipment</title>
+    
+        <!-- BoxIcons v2.1.2 -->
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    
+        <!-- Roboto Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+        <!-- CSS File -->
+        <link rel="stylesheet" href="../static/css/createshipment.css">
+
+    </head>
+
+    <body>
+
+         <!-- Add this div for displaying error messages -->
+        <div id="error-message" class="error-message"></div>
+
+        <div class="container">
+       
+
+            <div class="centered-container">
+                <h2>Create New Shipment</h2>
+                <h4>Please fill in all the details.</h4>
+            </div>
+
+            <form action="/createshipment" method="POST" id="shipment-form">
+        
+                <div class="form-container">
+                    <div class="info-box">
+                        <div class="form-group">
+                            <label for="ShipmentNumber">Shipment Number<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="shipment_number" name="shipment_number" required>
+                            <!-- Error message for shipment number -->
+                          
+                            {% if shipment_number_error %}
+                            <div id="shipment-number-error" class="error-message">
+                                <p>{{ shipment_number_error }}</p>
+                            </div>
+                            {% endif %}
+            
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="RouteDetails">Route Details<span class="red-asterisk">*</span>:</label>
+                            <select id="route_details" name="route_details" required>
+                                <option value="" disabled selected>Select Route</option>
+                                <option value="Bangalore-Chennai">Bangalore-Chennai</option>
+                                <option value="Chennai-Banglore">Chennai-Banglore</option>
+                               
+                                <option value="Hyderabad-Kochin">Hyderabad-Kochin </option>
+                                <option value="Kochin-New Delhi">Kochin-New Delhi</option>
+                                <option value="Kolkata-Mumbai">Kolkata-Mumbai</option>
+                                <option value="New Delhi-Tirupathi">New Delhi-Tirupathi</option>
+                                <option value="Mumbai-Kolkata">Mumbai-Kolkata</option>
+                                <option value="Tirupathi-Chennai">Tirupathi-Chennai</option>
+                                      
+                            </select>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="Device">Device<span class="red-asterisk">*</span>:</label>
+                            <select id="device" name="device" required>
+                                <option value="" disabled selected>Select Device</option>
+                                <option value="11560533076">11560533076</option>
+                                <option value="11560533077">11560533077</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="PONumber">PO Number<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="po_number" name="po_number" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="NDCNumber">NDC Number<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="ndc_number" name="ndc_number" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="SerialNumber">Serial number of Goods<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="serial_number" name="serial_number" required>
+                        </div>
+                    </div>
+        
+                    <div class="info-box">
+                        <div class="form-group">
+                            <label for="ContainerNumber">Container Number<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="container_number" name="container_number" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="GoodsType">Goods Type<span class="red-asterisk">*</span>:</label>
+                            <select id="goods_type" name="goods_type" required>
+                                <option value="" disabled selected>Select Goods</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Medicals">Medicals</option>
+
+                            </select>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="DeliveryNumber">Delivery Number<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="delivery_number" name="delivery_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ExpectedDeliveryDate">Expected Delivery Date<span class="red-asterisk">*</span>:</label>
+                            <div class="date-box">
+                                <input type="date" id="expected_delivery" name="expected_delivery" required>
+                            </div>
+                        </div>
+                          
+                        <div class="form-group">
+                            <label for="BatchId">Batch Id<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="batch_id" name="batch_id" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="ShipmentDescription">Shipment Description<span class="red-asterisk">*</span>:</label>
+                            <input type="text" id="shipment_description" name="shipment_description" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="footer form-footer">
+                    <button id="create-button" type="submit" class="create-button" >Create</button>
+                    <button id="clear-button" type="reset" class="clear-button">Clear</button>
+                </div>
+                
+                
+            </form>
+ 
+            <div class="sidebar">
+        
+                <div class="toggle">
+                    <i class="bx bx-chevron-right"></i>
+                </div>
+        
+                <div class="logo">
+                    <img src="../static/Images/exf_logo.jpg" alt="...">
+                    <h3>"Seamless Flow, Endless Growth."</h3>
+                </div>
+        
+                <nav>
+                    <div class="nav-title">
+                        MENU
+                    </div>
+                    <ul>
+                        <li class="nav-item active" data-page="dashboard">
+                            <i class="bx bxs-dashboard"></i>
+                            <span>Dashboard</span>
+                        </li>
+                        <li class="nav-item" data-page="my_account">
+                            <i class="bx bxs-user"></i>
+                            <span>My Account</span>
+                        </li>
+                        <li class="nav-item" data-page="myshipment">
+                            <i class="bx bxs-wallet"></i>
+                            <span>My Shipment</span>
+                        </li>
+                        <li class="nav-item" data-page="createshipment">
+                            <i class="bx bxs-truck"></i>
+                            <span>New Shipment</span>
+                        </li>
+                        <li class="nav-item" data-page="datastream">
+                            <i class="bx bxs-save"></i>
+                            <span>Device Data</span>
+                        </li>
+                        <li class="nav-item" data-page="logout" onclick="clearAccessToken()">
+                            <i class="bx bx-log-out"></i>
+                            <span>Logout</span>
+                        </li>
+                    </ul>
+      
+        
+                </nav>
+             
+            </div>
+
+        </div>
+    
+    <script src="../static/js/createshipment.js"></script>
+    </body>
+</html>

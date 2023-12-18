@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # main application service
+  SCMEXPERT:
+    image: vinothinin/scmexpertapp:latest
+    ports:
+      - "8081:8081"
+
+  # Zookeeper for Kafka
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'  # Use Bitnami Zookeeper image
+    ports:
+      - "2181:2181"
+    depends_on:
+      - SCMEXPERT
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  # Kafka service
+  kafka:
+    image: 'bitnami/kafka:latest'  # Use Bitnami Kafka image
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_HEAP_OPTS=-Xmx1G  
+ 
+  # Server service
+  servers: 
+    image: vinothinin/scmexpertserver:latest
+    ports:
+      - "12345:12345"
+    depends_on:
+      - kafka
+  # Producer service
+  producer:
+    image: vinothinin/scmexpertproducer:latest
+    depends_on:
+      - servers
+    environment:
+      - port=12345
+      - host=servers
+      - bootstrap_servers=kafka:9092
+      - topic=device_data
+    
+   # Consumer service
+  consumer:
+    image: vinothinin/scmexpertconsumer:latest
+    depends_on:
+      - producer
+    environment:
+      - bootstrap_servers=kafka:9092
+      - topic=device_data
+      - MONGODB_URL=mongodb+srv://vinonethaji12:YKKZ1rJxm414tosz@cluster0.zejytcx.mongodb.net/?retryWrites=true&w=majority
+      - group_id=scm-consumer
+      - data_base_name=SCM
+      - collection=device_data

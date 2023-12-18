@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+   
+    <link rel="stylesheet" href="../static/css/datastream.css">
+
+     <!-- BoxIcons v2.1.2 -->
+     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    
+     <!-- Roboto Font -->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+ 
+    <title> Data stream </title>
+</head>
+
+<body>
+
+    <h1>Device Data Stream</h1>
+
+    </header>
+   
+    <!-- Display error message if it exists -->
+    {% if error_message %}
+    <div id="error-message" class="error-message">
+        <p>{{ error_message }}</p>
+    </div>
+    {% endif %}
+
+    <div class="input-box">
+        <form action="/datastream" autocomplete="off" method="post">
+            <h1>Please Select a Device Id to See the Data Stream</h1>
+            <label id="selected-device" class="details">Device id*</label>
+            <select name="deviceid" id="deviceid" class="deviceid" required>
+                <option value="" disabled selected>Select Device id</option>
+                <option value="1156053076">1156053076</option>
+                <option value="1156053077">1156053077</option>
+                <div class="button-container">
+                    <input type="submit" value="Get Device Data" class="get-data-button" method="post">
+                </div>
+            </select>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <table class="table" id="data-table">
+            <thead>
+                <tr>
+                    <th>Device id</th>
+                    <th>Battery Level</th>
+                    <th>First Sensor Temperature</th>
+                    <th>Route from</th>
+                    <th>Route To</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                {% for devicedata in device_data %}
+                <tr>
+                    <td>{{ devicedata.Device_ID }}</td>
+                    <td>{{ devicedata.Battery_Level }}</td>
+                    <td>{{ devicedata.First_Sensor_temperature }}</td>
+                    <td>{{ devicedata.Route_From }}</td>
+                    <td>{{ devicedata.Route_To }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="sidebar">
+        
+        <div class="toggle">
+            <i class="bx bx-chevron-right"></i>
+        </div>
+
+        <div class="logo">
+            <img src="../static/Images/exf_logo.jpg" alt="...">
+            <h3>"Seamless Flow, Endless Growth."</h3>
+        </div>
+
+        <nav>
+            <div class="nav-title">
+                MENU
+            </div>
+            <ul>
+                <li class="nav-item active" data-page="dashboard">
+                    <i class="bx bxs-dashboard"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-page="my_account">
+                    <i class="bx bxs-user"></i>
+                    <span>My Account</span>
+                </li>
+                <li class="nav-item" data-page="myshipment">
+                    <i class="bx bxs-wallet"></i>
+                    <span>My Shipment</span>
+                </li>
+                <li class="nav-item" data-page="createshipment">
+                    <i class="bx bxs-truck"></i>
+                    <span>New Shipment</span>
+                </li>
+                <li class="nav-item" data-page="datastream">
+                    <i class="bx bxs-save"></i>
+                    <span>Device Data</span>
+                </li>
+                <li class="nav-item" data-page="logout" onclick="clearAccessToken()">
+                    <i class="bx bx-log-out"></i>
+                    <span>Logout</span>
+                </li>  
+            </ul>
+
+        </nav>
+  
+    </div>
+
+    <script src="../static/js/datastream.js"></script>
+</body>
+
+</html>

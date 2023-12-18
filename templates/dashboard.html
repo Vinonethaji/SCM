@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    
+        <title>Dashboard</title>
+        
+        <!-- BoxIcons v2.1.2 -->
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+    
+        <!-- Roboto Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+        <!-- CSS File -->
+        <link rel="stylesheet" href="../static/css/dashboard.css">
+    
+    </head>
+    
+    <body>
+        
+            <div class="centered-container">
+               
+                <h2>Welcome to SCMXpertLite</h2></div>
+            <div class="circle-container">
+                <div class="circle1">
+                    <img src="../static/Images/dashboard.jpg" alt="Image 1" class="circle-image">
+                </div>
+                <div class="circle2">
+                   <img src="../static/Images/plane.jpg" alt="Image 2" class="circle-image">
+              
+                </div>
+                <div class="circle3">
+                    <a href="../createshipment.html"></a>
+                    <img src="../static/Images/ship.jpg"alt="Image 3" class="circle-image">
+                </div>
+            </div>
+                  
+                
+            <div class="my-text">    
+                <p>"Efficiency in motion, excellence in delivery."</p></div>
+        
+                <div class="container">
+                    <div class="box1">
+                        <div class="content">
+                            <h3>Create a new Shipment</h3>
+                            <p>"Are you up for sending something out? We can help you get a new shipment ready to go!"</p>
+                            <button class="button" onclick="window.location.href = 'createshipment';">CREATE SHIPMENT</button>
+                            
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <div class="content">
+                            <h3>To see Device Data</h3>
+                            <p>"Feel free to check out the live data stream right here!"</p>
+                            <button class="button" onclick="window.location.href = 'datastream';">DEVICE DATABASE</button>
+                           
+                        </div>
+                    </div>
+                </div> 
+                
+            <div class="sidebar">
+        
+                <div class="toggle">
+                    <i class="bx bx-chevron-right"></i>
+                </div>
+        
+                <div class="logo">
+                    <img src="../static/Images/exf_logo.jpg" alt="...">
+                    <h3>"Seamless Flow, Endless Growth."</h3>
+                </div>
+        
+                <nav>
+                    <div class="nav-title">
+                        MENU
+                    </div>
+                    <ul>
+                        <li class="nav-item active" data-page="dashboard">
+                            <i class="bx bxs-dashboard"></i>
+                            <span>Dashboard</span>
+                        </li>
+                        <li class="nav-item" data-page="my_account">
+                            <i class="bx bxs-user"></i>
+                            <span>My Account</span>
+                        </li>
+                        <li class="nav-item" data-page="myshipment">
+                            <i class="bx bxs-wallet"></i>
+                            <span>My Shipment</span>
+                        </li>
+                        <li class="nav-item" data-page="createshipment">
+                            <i class="bx bxs-truck"></i>
+                            <span>New Shipment</span>
+                        </li>
+                        <li class="nav-item" data-page="datastream">
+                            <i class="bx bxs-save"></i>
+                            <span>Device Data</span>
+                        </li>
+                        <li class="nav-item" data-page="logout" onclick="clearAccessToken()">
+                            <i class="bx bx-log-out"></i>
+                            <span>Logout</span>
+                        </li>
+                        
+
+                    </ul>
+        
+                </nav>
+            </div>
+        
+        <!-- JS File -->
+       
+    <script src="../static/js/dashboard.js"></script>
+    </body>
+    </html>
